@@ -256,8 +256,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 34.8, y: 6, z: 4.1}
+  m_LocalRotation: {x: -0.18228516, y: 0.0020619743, z: -0.00038262305, w: -0.98324347}
+  m_LocalPosition: {x: 5.385614, y: 100.49348, z: -170.23827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -349,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 1471043979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 1, z: 50}
+  m_LocalScale: {x: 500, y: 1, z: 500}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -384,13 +384,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crow: {fileID: 5464405990245613749, guid: 49fe08a6e2b71b9489a3240c9d8772b5, type: 3}
-  numCrows: 20
+  numCrows: 130
   crows: []
-  flyRange: {x: 10, y: 10, z: 10}
-  minSpeed: 1.47
-  maxSpeed: 1.32
-  neighborDist: 0
-  rotSpeed: 0
+  flyRange: {x: 70, y: 90, z: 30}
+  goalPosition: {x: 0, y: 0, z: 0}
+  minSpeed: 12
+  maxSpeed: 15
+  neighborDist: 12
+  rotSpeed: 0.3
 --- !u!4 &2053051086
 Transform:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053051084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -17.6}
+  m_LocalPosition: {x: 0, y: 90, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -6,6 +6,8 @@ public class Flock : MonoBehaviour
 {
     public FlockManager manager;
     float speed;
+
+    bool turning = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,37 +17,66 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FlockRules();
+        Bounds bounds = new Bounds(manager.transform.position, manager.flyRange * 5);
+
+        if (!bounds.Contains(transform.position))
+        {
+            turning = true;
+        }
+
+        else
+            turning = false;
+
+        if(turning)
+        {
+            Vector3 direction = manager.transform.position - transform.position;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), manager.rotSpeed * Time.deltaTime);
+        }
+
+        else
+        {
+            if (Random.Range(0, 100) < 10)
+            {
+                speed = Random.Range(manager.minSpeed, manager.maxSpeed);
+            }
+
+            if (Random.Range(0, 100) < 20)
+            {
+                FlockBehaviour();
+            }
+        }
+
+        
         transform.Translate(0, 0, speed * Time.deltaTime);
     }
 
-    void FlockRules()
+    void FlockBehaviour()
     {
-        GameObject[] crowsHolder;
-        crowsHolder = manager.crows;
+        GameObject[] crows;
+        crows = manager.crows;
 
         Vector3 avgCenter = Vector3.zero;
         Vector3 avoidance = Vector3.zero;
         float avgSpeed = 0.01f;
-        float nDist;
+        float neibourDistance;
         int groupSize = 0;
 
-        foreach (GameObject go in crowsHolder)
+        foreach (GameObject corw in crows)
         {
-            if (go != this.gameObject)
+            if (corw != this.gameObject)
             {
-                nDist = Vector3.Distance(go.transform.position, transform.position);
-                if (nDist <= manager.neighborDist)
+                neibourDistance = Vector3.Distance(corw.transform.position, transform.position);
+                if (neibourDistance <= manager.neighborDist)
                 {
-                    avgCenter += go.transform.position;
+                    avgCenter += corw.transform.position;
                     groupSize++;
 
-                    if (nDist < 1.0f)
+                    if (neibourDistance < 3.0f)
                     {
-                        avoidance += (transform.position - go.transform.position);
+                        avoidance += (transform.position - corw.transform.position);
                     }
 
-                    Flock flock = go.GetComponent<Flock>();
+                    Flock flock = corw.GetComponent<Flock>();
                     avgSpeed += flock.speed;
                 }
             }
@@ -53,7 +84,7 @@ public class Flock : MonoBehaviour
 
         if (groupSize > 0)
         {
-            avgCenter /= groupSize;
+            avgCenter = avgCenter / groupSize + (manager.goalPosition - transform.position);
             speed = avgSpeed / groupSize;
 
             Vector3 direction = (avgCenter + avoidance) - transform.position;

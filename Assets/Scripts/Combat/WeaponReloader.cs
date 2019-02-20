@@ -7,10 +7,13 @@ public class WeaponReloader : MonoBehaviour
     [SerializeField] int maxAmmo;
     [SerializeField] float reloadTime;
     [SerializeField] int clipSize;//弹夹大小
+    Animator animator;
     int ammo;
    
     public int shotFiredInClip;
     bool isReloading;
+
+   
 
     public int RoundRemainingInClip
     {
@@ -45,6 +48,7 @@ public class WeaponReloader : MonoBehaviour
         isReloading = false;
         ammo -= shotFiredInClip;
         shotFiredInClip = 0;
+
         if (ammo < 0)
         {
             ammo = 0;

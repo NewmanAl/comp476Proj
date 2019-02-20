@@ -6,9 +6,10 @@ public class Shooter : MonoBehaviour
 {
     [SerializeField] float fireRate;
     [SerializeField] Bullet bullet;
+    [SerializeField] Transform hand;
     public Transform firePot;
     private WeaponReloader reloader;
-
+   
     float nextFire; //开火间隔
     public bool fireEnable;
 
@@ -17,6 +18,9 @@ public class Shooter : MonoBehaviour
         firePot = transform.Find("firePot");
 
         reloader = GetComponent<WeaponReloader>();
+
+        transform.SetParent(hand);
+
     }
 
     public void Reload()

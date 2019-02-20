@@ -18,7 +18,8 @@ public class GameManager
                 m_Instance.gameObject.AddComponent<InputController>();
                 m_Instance.gameObject.AddComponent<Timer>();
                 m_Instance.gameObject.AddComponent<Respwaner>();
-                
+              
+
             }
 
             return m_Instance;
@@ -60,6 +61,10 @@ public class GameManager
             return m_Respwaner;
         }
     }
+
+
+
+  
 
 
 }

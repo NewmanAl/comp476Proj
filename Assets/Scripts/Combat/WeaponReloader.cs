@@ -46,6 +46,7 @@ public class WeaponReloader : MonoBehaviour
     {
         print("Reload executed");
         isReloading = false;
+        GetComponentInParent<Player>().inputEnabled = true;
         ammo -= shotFiredInClip;
         shotFiredInClip = 0;
 

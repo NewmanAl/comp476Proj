@@ -18,12 +18,14 @@ public class Player : MonoBehaviour
     [SerializeField] float walkSpeed;
     [SerializeField] float crouchSpeed;
     [SerializeField] MouseInput MouseControl;
+    public float moveSpeed = 0;
 
     public MoveController MoveController;
-
     public aimPoint crossHair;
+    public bool inputEnabled = true;
+    public Vector2 direction;
     InputController playerInput;
-
+    
     Vector2 mouseInput;
 
     // Start is called before the first frame update
@@ -53,12 +55,17 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        float moveSpeed = walkSpeed;
-        if (playerInput.IsRunning)
-            moveSpeed = runSpeed;
-        if (playerInput.IsCrouched)
-            moveSpeed = crouchSpeed;
-        Vector2 direction = new Vector2(playerInput.Vertical * moveSpeed, playerInput.Horizontal * moveSpeed);
+        moveSpeed = 0;
+        if (inputEnabled == true)
+        {
+            moveSpeed = walkSpeed;
+            if (playerInput.IsRunning)
+                moveSpeed = runSpeed;
+            if (playerInput.IsCrouched)
+                moveSpeed = crouchSpeed;
+        }
+
+        direction = new Vector2(playerInput.Vertical * moveSpeed, playerInput.Horizontal * moveSpeed);
         MoveController.Move(direction);
     }
 

@@ -9,9 +9,12 @@ public class InputController : MonoBehaviour
     public Vector2 MouseInput;
     public bool fire;
     public bool Reload;
+    public bool jump;
+    private bool lastJump;
     public bool IsWalking;
     public bool IsRunning;
     public bool IsCrouched;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +32,16 @@ public class InputController : MonoBehaviour
         Reload = Input.GetKey(KeyCode.R);
         IsRunning = Input.GetKey(KeyCode.LeftShift);
         IsCrouched = Input.GetKey(KeyCode.C);
+        bool newJump = Input.GetKey(KeyCode.Space);
+        if(newJump != lastJump && newJump == true)
+        {
+            print("jump trigger");
+            jump = true;
+        }
+        else
+        {
+            jump = false;
+        }
+        lastJump = newJump;
     }
 }

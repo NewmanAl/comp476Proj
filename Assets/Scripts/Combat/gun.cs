@@ -19,6 +19,8 @@ public class gun : Shooter
     {
         if (GameManager.Instance.InputController.Reload)
         {
+            GetComponentInParent<Player>().inputEnabled = false; //lock movement when reloading
+
             Reload();
         }
     }

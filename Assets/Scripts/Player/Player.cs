@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] float walkSpeed;
     [SerializeField] float crouchSpeed;
     [SerializeField] MouseInput MouseControl;
+    public PlayerAim playerAim;
     public float moveSpeed = 0;
 
     public MoveController MoveController;
@@ -77,7 +78,11 @@ public class Player : MonoBehaviour
         transform.Rotate(Vector3.up * mouseInput.x * MouseControl.Sensitivity.x);
 
         crossHair.LookHeight(mouseInput.y * MouseControl.Sensitivity.y);
+
+        playerAim.SetRotation(mouseInput.y * MouseControl.Sensitivity.y);
     }
+
+
 
    
 }

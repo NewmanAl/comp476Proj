@@ -6,6 +6,9 @@ public class PlayerAnimation : MonoBehaviour
 {
     Animator animator;
     private Vector3 thrustVec;
+    private PlayerAim m_PlayerAim;
+    
+
     Rigidbody rb;
     InputController playerInput;
     Player player;
@@ -16,6 +19,7 @@ public class PlayerAnimation : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerInput = GameManager.Instance.InputController;
         player = GetComponent<Player>();
+        m_PlayerAim = player.playerAim;
     }
 
     // Update is called once per frame
@@ -35,6 +39,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetTrigger("Jump");
         }
+        animator.SetFloat("AimFloat", m_PlayerAim.GetAngle());
     }
 
     void FixedUpdate()

@@ -7,9 +7,7 @@ public class Destructable : MonoBehaviour
 
     [SerializeField] float hitPoints; //health
 
-    [SerializeField]
     public event System.Action OnDeath;
-    [SerializeField]
     public event System.Action OnDamageReceived;
 
     float damageTaken;

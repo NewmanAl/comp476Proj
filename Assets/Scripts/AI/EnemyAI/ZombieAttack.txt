@@ -1,0 +1,6 @@
+tree("Root")
+	sequence
+		SeePlayer
+		TargetPlayer
+		SetTarget
+		

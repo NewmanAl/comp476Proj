@@ -1,0 +1,6 @@
+tree("Root")
+	sequence
+		IsFiring
+		FindTheClosesetCoverPoint
+		TargetCoverPoint
+		SetTarget

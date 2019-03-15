@@ -1,0 +1,10 @@
+tree("Root")
+	sequence
+		random
+			CheckAround(90.0)
+			CheckAround(-90.0)
+			CheckAround(130.0)
+			CheckAround(-30.0)
+		LookAndCheck
+		WaitRandom(2.0,4.0)
+

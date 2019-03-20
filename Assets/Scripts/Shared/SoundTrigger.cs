@@ -79,6 +79,11 @@ public class SoundTrigger : MonoBehaviour
         }
     }
 
+    public float GetSoundRadius()
+    {
+        return m_collider.radius;
+    }
+
     private void updateDebugSphereRadius()
     {
         float scale = m_collider.radius * 2;

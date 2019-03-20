@@ -8,6 +8,8 @@ public class ZombieController : MonoBehaviour
 
     private bool isMoving;
     private bool isDead;
+    [SerializeField]
+    public KinematicStates ks;
 
     private Attack attack;
     private Kinematics kinematics;
@@ -21,7 +23,7 @@ public class ZombieController : MonoBehaviour
 
         kinematics = GetComponent<Kinematics>();
         kinematics.SetTarget(target.transform);
-        kinematics.SetState(KinematicStates.Wander);
+        kinematics.SetState(ks);
         isMoving = true;
     }
 

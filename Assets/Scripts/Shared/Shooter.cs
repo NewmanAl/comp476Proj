@@ -8,14 +8,16 @@ public class Shooter : MonoBehaviour
     [SerializeField] Bullet bullet;
     [SerializeField] Transform hand;
     public Transform firePot;
+
     private WeaponReloader reloader;
-   
+
     float nextFire; //开火间隔
     public bool fireEnable;
 
     void Awake()
     {
         firePot = transform.Find("firePot");
+
 
         reloader = GetComponent<WeaponReloader>();
 
@@ -33,12 +35,12 @@ public class Shooter : MonoBehaviour
 
     public virtual void Fire()
     {
-        print("fire");
+        print(reloader.RoundRemainingInClip);
         fireEnable = false;
         if (Time.time < nextFire)
             return;
 
-        if(reloader != null)
+        if (reloader != null)
         {
             if (reloader.IsReloading)
                 return;
@@ -49,9 +51,10 @@ public class Shooter : MonoBehaviour
         }
 
         nextFire = Time.time + fireRate;
-
+        //Vector3 dir =;
+        //    
         Instantiate(bullet, firePot.position, firePot.rotation);
-
+        print("fire");
 
         fireEnable = true;
 

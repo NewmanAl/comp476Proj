@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5041,6 +5041,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034203773632208446, guid: 7d7444b9dd515924a9ec496a4523f6b7,
+        type: 3}
+      propertyPath: MouseControl.Dumping.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034203773632208446, guid: 7d7444b9dd515924a9ec496a4523f6b7,
+        type: 3}
+      propertyPath: MouseControl.Dumping.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034203773632208446, guid: 7d7444b9dd515924a9ec496a4523f6b7,
+        type: 3}
+      propertyPath: MouseControl.Sensitivity.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034203773632208446, guid: 7d7444b9dd515924a9ec496a4523f6b7,
+        type: 3}
+      propertyPath: MouseControl.Sensitivity.y
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d7444b9dd515924a9ec496a4523f6b7, type: 3}

@@ -8,15 +8,26 @@ public class aimPoint : MonoBehaviour
     [SerializeField] int size;
     [SerializeField] float maxAngle;
     [SerializeField] float minAngle;
-
+    public GameObject gun;
     float lookHeight;
+    void Awake()
+    {
+
+
+    }
 
     public void LookHeight(float value)
     {
-        //lookHeight += value;
+        lookHeight += value;
 
-        //if (lookHeight > maxAngle || lookHeight < minAngle)
-        //    lookHeight -= value;
+        if (lookHeight > maxAngle || lookHeight < minAngle)
+        {
+
+            lookHeight -= value;
+        }
+
+
+
 
     }
 
@@ -24,7 +35,28 @@ public class aimPoint : MonoBehaviour
     {
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
         screenPosition.y = Screen.height - screenPosition.y;
-        GUI.DrawTexture(new Rect(screenPosition.x, screenPosition.y - lookHeight, size, size), image);
+        Rect rec = new Rect(screenPosition.x, screenPosition.y - lookHeight, size, size);
+        GUI.DrawTexture(rec, image);
+
+
+
+        // print(gun.GetComponent<gun>().fireEnable);
+        if (gun.GetComponent<gun>().fireEnable)
+        {
+            Ray rayOrigin = Camera.main.ScreenPointToRay(rec.position);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(rayOrigin, out hitInfo))
+            {
+                if (hitInfo.collider != null)
+                {
+                    Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+                    Debug.DrawRay(transform.position, forward, Color.red);
+                    print("ray hit");
+                }
+            }
+        }
+
+        // print(screenPosition.y - lookHeight);
     }
 
 

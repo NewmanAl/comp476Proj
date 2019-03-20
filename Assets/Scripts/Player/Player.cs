@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
         crossHair.LookHeight(mouseInput.y * MouseControl.Sensitivity.y);
 
-        playerAim.SetRotation(mouseInput.y * MouseControl.Sensitivity.y);
+     //   playerAim.SetRotation(mouseInput.y * MouseControl.Sensitivity.y);
     }
 
 

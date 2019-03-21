@@ -7,7 +7,7 @@ public class PlayerAnimation : MonoBehaviour
     Animator animator;
     private Vector3 thrustVec;
     private PlayerAim m_PlayerAim;
-    
+    public float jumpForce;
 
     Rigidbody rb;
     InputController playerInput;
@@ -61,7 +61,7 @@ public class PlayerAnimation : MonoBehaviour
     public void OnJumpEnter()
     {
     
-        thrustVec = new Vector3(0, 3.0f, 0);
+        thrustVec = new Vector3(0, jumpForce, 0);
        
 
     }

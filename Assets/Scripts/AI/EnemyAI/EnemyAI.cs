@@ -14,13 +14,13 @@ public class EnemyAI : MonoBehaviour
     float ZombieWanderSpeed = 1f;
     float ZombieAttackSpeed = 3f;
     float speed;
+    float health = 20f;
     float rotationSpeed = 1f;
     float accuracy = 2f;
-
-    float visDistance = 80f;
+    float visDistance = 15f;
+    float visAngle = 80f;
     float attackrange = 50f;
-
-    int currentWaypoint = 0;
+    int currentWaypoint;
     public CoverPointManager cover;
 
     // Start is called before the first frame update
@@ -37,17 +37,25 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
-    public void RandomDestinationToWander()
+    void Destination(float x, float z)
     {
-        Vector3 destination = new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100));
+        Vector3 destination = new Vector3(x, 0, z);
         agent.SetDestination(destination);
         Task.current.Succeed();
     }
 
     [Task]
-    public void WanderingDestination()
+    void RandomDestination()
     {
-        if(agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        Vector3 destination = new Vector3(Random.Range(-50, 50), 0, Random.Range(-50f, 50));
+        agent.SetDestination(destination);
+        Task.current.Succeed();
+    }
+
+    [Task]
+    void GoToDestination()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
             Task.current.Succeed();
         }
@@ -62,7 +70,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
-    public void LookAndCheck()
+    void LookAndCheck()
     {
         Vector3 direction = target - transform.position;
 
@@ -75,7 +83,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
-    public void LookAtTarget()
+    void LookAtTarget()
     {
         Vector3 direction = target - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSpeed);
@@ -83,21 +91,21 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
-    public void TargetWaypoint()
+    void TargetWaypoint()
     {
         target = waypoints[currentWaypoint].transform.position;
         Task.current.Succeed();
     }
 
     [Task]
-    public void TargetPlayer()
+    void TargetPlayer()
     {
         target = player.transform.position;
         Task.current.Succeed();
     }
 
     [Task]
-    public void TargetCoverPoint()
+    void TargetCoverPoint()
     {
         target = coverPoint.transform.position;
         Task.current.Succeed();
@@ -106,48 +114,31 @@ public class EnemyAI : MonoBehaviour
     [Task]
     bool SeePlayer()
     {
-        Vector3 distance = player.transform.position - transform.position;
+        Vector3 direction = player.transform.position - transform.position;
+        float visibleAngle = Vector3.Angle(direction, transform.forward);
+        bool isCover = false;
 
-        RaycastHit hit;
-        bool isWall = false;
+        Debug.DrawRay(transform.position, direction, Color.red);
 
-        Debug.DrawRay(transform.position, distance, Color.red);
-
-        if (Physics.Raycast(transform.position, distance, out hit))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit))
         {
-            if (hit.collider.gameObject.tag == "Wall")
-            {
-                isWall = true;
-            }
+            isCover |= hit.collider.gameObject.tag == "Cover";
         }
 
-        if (distance.magnitude < visDistance && !isWall)
+        if (direction.magnitude < visDistance && visibleAngle < visAngle && !isCover)
             return true;
-        else
-            return false;
+        return false;
     }
 
     [Task]
-    public void MoveToTarget()
-    {
-        if (target == player.transform.position)
-            speed = ZombieAttackSpeed;
-        else
-            speed = ZombieWanderSpeed;
-
-        transform.Translate(0, 0, speed * Time.deltaTime);
-        Task.current.Succeed();
-    }
-
-    [Task]
-    public void SetTarget()
+    void SetTarget()
     {
         agent.SetDestination(target);
         Task.current.Succeed();
     }
 
     [Task]
-    public bool IsFiring()
+    bool IsFiring()
     {
         if (Input.GetButtonDown("Fire1"))
             return true;
@@ -155,18 +146,59 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
-    public void FindTheClosesetCoverPoint()
+    void DecreaseHealth()
+    {
+        health--;
+        Task.current.Succeed();
+    }
+
+    [Task]
+    bool IsNotHealthy(float h)
+    {
+        return health < h;
+    }
+
+    void RecoverHealth()
+    {
+        if (health < 20)
+            health++;
+    }
+
+    [Task]
+    bool IsInDanger(float minDist)
+    {
+        Vector3 distance = player.transform.position - transform.position;
+        return (distance.magnitude < minDist);
+    }
+
+    [Task]
+    void Flee()
+    {
+        Vector3 awayFromPlayer = transform.position - player.transform.position;
+        Vector3 destination = transform.position + awayFromPlayer * 2;
+        agent.SetDestination(destination);
+        Task.current.Succeed();
+    }
+
+    [Task]
+    void FindTheClosesetCoverPoint()
     {
         if (waypoints.Length == 0)
             Task.current.Fail();
-        foreach(var coverPoint in waypoints)
+        for (int i = 0; i < waypoints.Length; i++)
         {
-            cover = coverPoint.GetComponent<CoverPointManager>();
-            if(Vector3.Distance(transform.position, coverPoint.transform.position) < 50f && !cover.SeePlayer())
+            cover = waypoints[i].GetComponent<CoverPointManager>();
+            if (Vector3.Distance(transform.position, waypoints[i].transform.position) < 30f && !cover.SeePlayer())
             {
-                this.coverPoint = coverPoint;
+                coverPoint = waypoints[i];
                 Task.current.Succeed();
             }
         }
+    }
+
+    [Task]
+    void AIDead()
+    {
+        Destroy(gameObject);
     }
 }

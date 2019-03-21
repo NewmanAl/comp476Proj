@@ -1,0 +1,62 @@
+tree("Root")
+	parallel
+        repeat mute tree("Patrol")
+        repeat mute tree("AIDead")
+        
+tree("Patrol")
+    fallback
+        tree("Flee")
+        tree("TakeCover")
+        while not IsNotHealthy(15.0)
+            fallback
+                tree("CheckAround")
+                tree("Wander")
+                tree("ZombieAttack")
+            
+tree("AIDead")
+    sequence
+        IsNotHealthy(1.0)
+        AIDead
+        
+tree("CheckAround")
+    while not IsNotHealthy(15.0)
+        while not SeePlayer
+            sequence
+                random
+                    CheckAround(90.0)
+                    CheckAround(-90.0)
+                    CheckAround(130.0)
+                    CheckAround(-30.0)
+                LookAndCheck
+                WaitRandom(2.0,4.0)
+                random
+                    Fail
+                    Succeed
+        
+tree("Wander")
+    while not SeePlayer
+        sequence
+            RandomDestination
+            GoToDestination
+        
+tree("ZombieAttack")
+    sequence
+        SeePlayer
+        TargetPlayer
+        SetTarget
+        
+tree("Flee")
+    While IsNotHealthy(15.0)
+           While IsInDanger(15.0)
+                sequence
+                    Flee
+                    GoToDestination
+        
+tree("TakeCover")
+    sequence
+        IsFiring
+        While IsNotHealthy(15.0)
+            sequence
+                FindTheClosesetCoverPoint
+                TargetCoverPoint
+                SetTarget

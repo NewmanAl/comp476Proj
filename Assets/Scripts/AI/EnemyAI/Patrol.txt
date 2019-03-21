@@ -1,0 +1,10 @@
+tree("Root")
+	sequence
+        Destination(-5.0,-5.0)
+        GoToDestination
+        Destination(-5.0,5.0)
+        GoToDestination
+        Destination(5.0,5.0)
+        GoToDestination
+        Destination(5.0,-5.0)
+        GoToDestination

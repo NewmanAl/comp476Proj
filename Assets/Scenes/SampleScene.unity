@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: d9558928e79b84271a5739c8b014c2c8, type: 2}
 --- !u!1001 &7739444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,8 +264,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8799624006402350476, guid: 3908e793ada6469498d791cfd55b25bd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3908e793ada6469498d791cfd55b25bd, type: 3}
+--- !u!1 &29475552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8799624006402350476, guid: 3908e793ada6469498d791cfd55b25bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 29475551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &29475553
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29475552}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &113724382
 PrefabInstance:
   m_ObjectHideFlags: 0

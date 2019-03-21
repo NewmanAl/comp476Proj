@@ -1,0 +1,6 @@
+tree("Root")
+       While IsNotHealthy(21.0)
+           While IsInDanger(50.0)
+                sequence
+                    Flee
+                    GoToDestination

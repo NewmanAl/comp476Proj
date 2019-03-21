@@ -26,7 +26,10 @@ public class Player : MonoBehaviour
     public bool inputEnabled = true;
     public Vector2 direction;
     InputController playerInput;
-    
+
+    public bool resource1 = false;
+    public bool resource3 = false;
+    public bool resource2 = false;
     Vector2 mouseInput;
 
     // Start is called before the first frame update
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
 
         transform.Rotate(Vector3.up * mouseInput.x * MouseControl.Sensitivity.x);
 
-        crossHair.LookHeight(mouseInput.y * MouseControl.Sensitivity.y);
+      //  crossHair.LookHeight(mouseInput.y * MouseControl.Sensitivity.y);
 
      //   playerAim.SetRotation(mouseInput.y * MouseControl.Sensitivity.y);
     }

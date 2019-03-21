@@ -11,6 +11,7 @@ public class Shooter : MonoBehaviour
 
     private WeaponReloader reloader;
 
+
     float nextFire; //开火间隔
     public bool fireEnable;
 
@@ -53,7 +54,7 @@ public class Shooter : MonoBehaviour
         nextFire = Time.time + fireRate;
         //Vector3 dir =;
         //    
-        Instantiate(bullet, firePot.position, firePot.rotation);
+   //     Instantiate(bullet, firePot.position, firePot.rotation);
         print("fire");
 
         fireEnable = true;

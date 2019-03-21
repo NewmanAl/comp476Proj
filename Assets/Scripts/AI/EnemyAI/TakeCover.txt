@@ -1,6 +1,8 @@
 tree("Root")
 	sequence
-		IsFiring
-		FindTheClosesetCoverPoint
-		TargetCoverPoint
-		SetTarget
+        IsFiring
+        While IsNotHealthy(21.0)
+            sequence
+                FindTheClosesetCoverPoint
+                TargetCoverPoint
+                SetTarget

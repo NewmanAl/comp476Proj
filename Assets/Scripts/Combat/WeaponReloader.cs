@@ -8,7 +8,7 @@ public class WeaponReloader : MonoBehaviour
     [SerializeField] float reloadTime;
     [SerializeField] int clipSize;//弹夹大小
     Animator animator;
-    int ammo;
+    public int ammo;
    
     public int shotFiredInClip;
     bool isReloading;

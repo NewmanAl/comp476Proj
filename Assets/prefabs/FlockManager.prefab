@@ -43,12 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa890eb9c477d4f43b16028b1bb7f2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crow: {fileID: 8273016875156352384, guid: a06d06e5330bc7746a9fb6ca70dc422d, type: 3}
+  crow: {fileID: 482831923380341306, guid: 5ed9b4bb5254845cda2757645d2aaed8, type: 3}
   numCrows: 130
   crows: []
   flyRange: {x: 70, y: 90, z: 30}
   goalPosition: {x: 0, y: 0, z: 0}
   minSpeed: 10
   maxSpeed: 15
-  neighborDist: 25
+  neighborDist: 15.5
   rotSpeed: 0.1

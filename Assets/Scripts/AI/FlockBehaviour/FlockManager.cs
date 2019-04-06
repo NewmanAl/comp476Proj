@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FlockManager : MonoBehaviour
 {
@@ -12,9 +10,8 @@ public class FlockManager : MonoBehaviour
 
     public float minSpeed = 10f;
     public float maxSpeed = 15f;
-
-    float flockManagerMinRange = -20f;
-    float flockManagerMaxRange = 20f;
+    private float flockManagerMinRange = -20f;
+    private float flockManagerMaxRange = 20f;
 
     [Range(1.0f, 30.0f)]
     public float neighborDist;
@@ -41,7 +38,8 @@ public class FlockManager : MonoBehaviour
         {
             Vector3 position = transform.position + new Vector3(Random.Range(-flyRange.x, flyRange.x), Random.Range(-flyRange.y, flyRange.y), Random.Range(-flyRange.z, flyRange.z));
 
-            crows[i] = (GameObject)Instantiate(crow, position, Quaternion.identity);
+            crows[i] = Instantiate(crow, position, Quaternion.identity);
+            Debug.Log(crows[i] == null);
             crows[i].GetComponent<Flock>().manager = this;
         }
     }

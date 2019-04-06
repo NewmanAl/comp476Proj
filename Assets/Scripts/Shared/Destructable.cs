@@ -12,7 +12,7 @@ public class Destructable : MonoBehaviour
     [SerializeField]
     public event System.Action OnDamageReceived;
 
-    float damageTaken;
+    public float damageTaken;
 
     // Start is called before the first frame update
     public float HitPointsRemaining

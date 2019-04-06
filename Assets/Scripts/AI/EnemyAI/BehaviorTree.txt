@@ -5,7 +5,6 @@ tree("Root")
         
 tree("Patrol")
     fallback
-        tree("Flee")
         tree("TakeCover")
         while not IsNotHealthy(15.0)
             fallback
@@ -19,7 +18,7 @@ tree("AIDead")
         AIDead
         
 tree("CheckAround")
-    while not IsNotHealthy(15.0)
+    while not IsNotHealthy(20.0)
         while not SeePlayer
             sequence
                 random
@@ -44,9 +43,10 @@ tree("ZombieAttack")
         SeePlayer
         TargetPlayer
         SetTarget
+        IsInDanger(2.0)
         
 tree("Flee")
-    While IsNotHealthy(15.0)
+    While IsNotHealthy(10.0)
            While IsInDanger(15.0)
                 sequence
                     Flee
@@ -54,8 +54,7 @@ tree("Flee")
         
 tree("TakeCover")
     sequence
-        IsFiring
-        While IsNotHealthy(15.0)
+        While IsNotHealthy(10.0)
             sequence
                 FindTheClosesetCoverPoint
                 TargetCoverPoint

@@ -1,37 +1,33 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.AI;
 using Panda;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player;
-    GameObject coverPoint;
-    public GameObject[] waypoints;
-    public Vector3 target;
+    [SerializeField]Transform player;
+    [SerializeField]GameObject coverPoint;
+    [SerializeField]GameObject[] waypoints;
+    [SerializeField]Vector3 target;
     NavMeshAgent agent;
-    float ZombieWanderSpeed = 1f;
-    float ZombieAttackSpeed = 3f;
-    float speed;
-    float health = 20f;
-    float rotationSpeed = 1f;
-    float accuracy = 2f;
-    float visDistance = 15f;
-    float visAngle = 80f;
-    float attackrange = 50f;
-    int currentWaypoint;
+    private float rotationSpeed = 1f;
+    private float visDistance = 10f;
+    private float visAngle = 80f;
+    private int currentWaypoint;
     public CoverPointManager cover;
+
+    Health enemieHealth;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        enemieHealth = GetComponent<Health>();
+        InvokeRepeating("RecoverHealth", 5, 2f);
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
 
     }
@@ -47,7 +43,8 @@ public class EnemyAI : MonoBehaviour
     [Task]
     void RandomDestination()
     {
-        Vector3 destination = new Vector3(Random.Range(-50, 50), 0, Random.Range(-50f, 50));
+        Vector3 destination = new Vector3(Random.Range(0.0f, 80f), 0, Random.Range(-30f, 40f));
+        agent.speed = 1.5f;
         agent.SetDestination(destination);
         Task.current.Succeed();
     }
@@ -101,6 +98,7 @@ public class EnemyAI : MonoBehaviour
     void TargetPlayer()
     {
         target = player.transform.position;
+        agent.speed = 2.5f;
         Task.current.Succeed();
     }
 
@@ -131,6 +129,19 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "SoundTrigger")
+        {
+            if (enemieHealth.HitPointsRemaining > 10f)
+            {
+                target = player.transform.position;
+                SetTarget();
+            }
+        }
+    }
+
+    [Task]
     void SetTarget()
     {
         agent.SetDestination(target);
@@ -138,30 +149,16 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
-    bool IsFiring()
-    {
-        if (Input.GetButtonDown("Fire1"))
-            return true;
-        return false;
-    }
-
-    [Task]
-    void DecreaseHealth()
-    {
-        health--;
-        Task.current.Succeed();
-    }
-
-    [Task]
     bool IsNotHealthy(float h)
     {
-        return health < h;
+        return enemieHealth.HitPointsRemaining < h;
     }
 
+    [Task]
     void RecoverHealth()
     {
-        if (health < 20)
-            health++;
+        if (enemieHealth.HitPointsRemaining < 20)
+            enemieHealth.damageTaken--;
     }
 
     [Task]
@@ -175,8 +172,9 @@ public class EnemyAI : MonoBehaviour
     void Flee()
     {
         Vector3 awayFromPlayer = transform.position - player.transform.position;
-        Vector3 destination = transform.position + awayFromPlayer * 2;
+        Vector3 destination = transform.position + awayFromPlayer / 5;
         agent.SetDestination(destination);
+        agent.speed = 2.0f;
         Task.current.Succeed();
     }
 
@@ -188,7 +186,7 @@ public class EnemyAI : MonoBehaviour
         for (int i = 0; i < waypoints.Length; i++)
         {
             cover = waypoints[i].GetComponent<CoverPointManager>();
-            if (Vector3.Distance(transform.position, waypoints[i].transform.position) < 30f && !cover.SeePlayer())
+            if (Vector3.Distance(transform.position, waypoints[i].transform.position) < 100f && !cover.SeePlayer())
             {
                 coverPoint = waypoints[i];
                 Task.current.Succeed();

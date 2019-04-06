@@ -21,22 +21,17 @@ public class CoverPointManager : MonoBehaviour
     public bool SeePlayer()
     {
         Vector3 distance = player.transform.position - transform.position;
-        RaycastHit hit;
-        bool isWall = false;
+        bool isObstacle = false;
 
         Debug.DrawRay(transform.position, distance, Color.red);
 
-        if (Physics.Raycast(transform.position, distance, out hit))
+        if (Physics.Raycast(transform.position, distance, out RaycastHit hit))
         {
-            if (hit.collider.gameObject.tag == "Wall")
-            {
-                isWall = true;
-            }
+            isObstacle |= hit.collider.gameObject.tag == "Cover";
         }
 
-        if (!isWall)
+        if (!isObstacle)
             return true;
-        else
-            return false;
+        return false;
     }
 }

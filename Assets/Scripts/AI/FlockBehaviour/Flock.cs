@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Flock : MonoBehaviour
 {
     public FlockManager manager;
     float speed;
-
-    bool turning = false;
+    private bool turning;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +60,7 @@ public class Flock : MonoBehaviour
 
         foreach (GameObject corw in crows)
         {
-            if (corw != this.gameObject)
+            if (corw != gameObject)
             {
                 neibourDistance = Vector3.Distance(corw.transform.position, transform.position);
                 if (neibourDistance <= manager.neighborDist)
@@ -76,8 +73,7 @@ public class Flock : MonoBehaviour
                         avoidance += (transform.position - corw.transform.position);
                     }
 
-                    Flock flock = corw.GetComponent<Flock>();
-                    avgSpeed += flock.speed;
+                    avgSpeed += speed;
                 }
             }
         }

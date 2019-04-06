@@ -18,7 +18,7 @@ tree("AIDead")
         AIDead
         
 tree("CheckAround")
-    while not IsNotHealthy(20.0)
+    while not IsNotHealthy(15.0)
         while not SeePlayer
             sequence
                 random
@@ -43,7 +43,10 @@ tree("ZombieAttack")
         SeePlayer
         TargetPlayer
         SetTarget
-        IsInDanger(2.0)
+        IsInDanger(1.0)
+        AttackPlayer
+        Wait 2.0
+        FinishAttacking
         
 tree("Flee")
     While IsNotHealthy(10.0)

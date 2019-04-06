@@ -39,7 +39,6 @@ public class FlockManager : MonoBehaviour
             Vector3 position = transform.position + new Vector3(Random.Range(-flyRange.x, flyRange.x), Random.Range(-flyRange.y, flyRange.y), Random.Range(-flyRange.z, flyRange.z));
 
             crows[i] = Instantiate(crow, position, Quaternion.identity);
-            Debug.Log(crows[i] == null);
             crows[i].GetComponent<Flock>().manager = this;
         }
     }

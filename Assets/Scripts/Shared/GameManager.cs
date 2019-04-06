@@ -5,13 +5,13 @@ using UnityEngine;
 public class GameManager
 {
     //hold gamemanager
-    private GameObject gameObject;
+    private GameObject gameObject = null;
     private static GameManager m_Instance;
     public static GameManager Instance
     {
         get
         {   //instance the gameObject
-            if(m_Instance == null)
+            if(m_Instance == null || m_Instance.gameObject == null)
             {
                 m_Instance = new GameManager();
                 m_Instance.gameObject = new GameObject("_gameManager");

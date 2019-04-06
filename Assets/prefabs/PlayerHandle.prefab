@@ -1610,6 +1610,7 @@ GameObject:
   - component: {fileID: 4034203773632208445}
   - component: {fileID: 4034203773632208322}
   - component: {fileID: 1828627015}
+  - component: {fileID: 191102232184983990}
   m_Layer: 0
   m_Name: PlayerHandle
   m_TagString: Player
@@ -1735,6 +1736,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &191102232184983990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4034203773632208320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9826924f28c95ef4db1355c8f1e1c2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 20
+  damageTaken: 0
+  inSeconds: 10
 --- !u!1 &4034203773674809701
 GameObject:
   m_ObjectHideFlags: 0

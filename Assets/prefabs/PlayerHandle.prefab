@@ -3843,6 +3843,7 @@ MonoBehaviour:
   maxAmmo: 120
   reloadTime: 2.4
   clipSize: 20
+  ammo: 0
   shotFiredInClip: 0
 --- !u!1 &4034203774575828503
 GameObject:
@@ -4389,11 +4390,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4034203773632208323}
     m_Modifications:
-    - target: {fileID: 805806819879193982, guid: b06c2ae4a92f56147b2ee449364247dd,
-        type: 3}
-      propertyPath: m_Name
-      value: SoundTrigger
-      objectReference: {fileID: 0}
     - target: {fileID: 805806819879193983, guid: b06c2ae4a92f56147b2ee449364247dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4448,6 +4444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805806819879193982, guid: b06c2ae4a92f56147b2ee449364247dd,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundTrigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06c2ae4a92f56147b2ee449364247dd, type: 3}

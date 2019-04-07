@@ -10,30 +10,36 @@ public class PlayerShoot : MonoBehaviour
     public float damage = 1f;
     public float range = 100f;
     public ParticleSystem muzzelFlash;
+    private float fireTime;
     void Update()
     {
-       
         Shoot();
     }
     void Shoot()
     {
         if (GameManager.Instance.InputController.fire)
         {
-                gun.Fire();
-
-            muzzelFlash.Play();
-            RaycastHit hit;
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
+            if(gun.Fire())
             {
-                Debug.Log(hit.transform.name);
-                Health target = hit.transform.GetComponent<Health>();
-                if (target != null)
+                muzzelFlash.Play();
+                fireTime = Time.time;
+                RaycastHit hit;
+                int layerMask = (1 << 9); //Zombie is on layer 9
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, layerMask))
                 {
-                    target.TakeDamage(damage);
+                    Health target = hit.transform.GetComponent<Health>();
+                    if (target != null)
+                    {
+                        target.TakeDamage(damage);
+                    }
                 }
             }
-      }
-        muzzelFlash.Stop();
+        }
+
+        if(Time.time - fireTime >= 0.1f)
+        {
+            muzzelFlash.Stop();
+        }
     }
 
 

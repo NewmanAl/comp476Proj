@@ -23,6 +23,7 @@ public class Shooter : MonoBehaviour
         reloader = GetComponent<WeaponReloader>();
 
         transform.SetParent(hand);
+        fireEnable = true;
 
     }
 
@@ -34,30 +35,30 @@ public class Shooter : MonoBehaviour
         reloader.Reload();
     }
 
-    public virtual void Fire()
+    public virtual bool Fire()
     {
-        print(reloader.RoundRemainingInClip);
         fireEnable = false;
         if (Time.time < nextFire)
-            return;
+            return false;
 
         if (reloader != null)
         {
             if (reloader.IsReloading)
-                return;
+                return false;
             if (reloader.RoundRemainingInClip == 0)
-                return;
+                return false;
 
             reloader.TakeFromClip(1); //fire one bullet from clip
         }
 
+        Debug.Log("firing");
         nextFire = Time.time + fireRate;
         //Vector3 dir =;
         //    
    //     Instantiate(bullet, firePot.position, firePot.rotation);
-        print("fire");
 
         fireEnable = true;
+        return true;
 
 
     }

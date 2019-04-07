@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class gun : Shooter
 {
-    public override void Fire()
+    public override bool Fire()
     {
-        //excute the base code first
-        base.Fire();
-
-        if (fireEnable)
-        {
-
-        }
+        return base.Fire();
     }
 
     public void Update()

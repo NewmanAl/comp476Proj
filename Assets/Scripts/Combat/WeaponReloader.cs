@@ -38,13 +38,11 @@ public class WeaponReloader : MonoBehaviour
         if (isReloading)
             return;
         isReloading = true;
-        print("Reload started");
         GameManager.Instance.Timer.Add(ExecuteReload, reloadTime);
     }
 
     private void ExecuteReload()
     {
-        print("Reload executed");
         isReloading = false;
         GetComponentInParent<Player>().inputEnabled = true;
         ammo -= shotFiredInClip;

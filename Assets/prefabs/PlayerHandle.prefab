@@ -1657,10 +1657,12 @@ MonoBehaviour:
     LockMouse: 1
   playerAim: {fileID: 1956855880}
   moveSpeed: 0
+  TNT: {fileID: 1610256018348900, guid: 9e332c8972872e943a20a060943302d3, type: 3}
   MoveController: {fileID: 0}
   crossHair: {fileID: 0}
   inputEnabled: 1
   direction: {x: 0, y: 0}
+  hand: {fileID: 4034203774568936276}
   resource1: 0
   resource3: 0
   resource2: 0
@@ -4277,10 +4279,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4034203773913699786}
     m_Modifications:
-    - target: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
-      propertyPath: m_Name
-      value: WFX_MF FPS RIFLE2
-      objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
       propertyPath: lengthInSec
       value: 0.5
@@ -4292,6 +4290,10 @@ PrefabInstance:
     - target: {fileID: 19800000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
+      propertyPath: m_Name
+      value: WFX_MF FPS RIFLE2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
       propertyPath: m_LocalPosition.x

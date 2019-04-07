@@ -20,11 +20,12 @@ public class Player : MonoBehaviour
     [SerializeField] MouseInput MouseControl;
     public PlayerAim playerAim;
     public float moveSpeed = 0;
-
+    public GameObject TNT;
     public MoveController MoveController;
     public aimPoint crossHair;
     public bool inputEnabled = true;
     public Vector2 direction;
+    public Transform hand;
     InputController playerInput;
 
     public bool resource1 = false;
@@ -49,12 +50,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Horizontal : " + inputController.Horizontal);
-        //print("Mouse : " + inputController.MouseInput);
+        
 
         Move();
         lookAround();
+        //when we have our items to be collected use the code below
+        //if (resource1 && resource2 && resource3)
+        //{
+        //    placeTNT();
+        //}
 
+        placeTNT();
     }
 
     void Move()
@@ -83,6 +89,15 @@ public class Player : MonoBehaviour
       //  crossHair.LookHeight(mouseInput.y * MouseControl.Sensitivity.y);
 
      //   playerAim.SetRotation(mouseInput.y * MouseControl.Sensitivity.y);
+    }
+
+    void placeTNT()
+    {
+        if (playerInput.placeTNT)
+        {
+            GameObject TNTtemp = Instantiate(TNT, hand);
+        }
+        
     }
 
 

@@ -10,6 +10,7 @@ public class InputController : MonoBehaviour
     public bool fire;
     public bool Reload;
     public bool jump;
+    public bool placeTNT;
     private bool lastJump;
     public bool IsWalking;
     public bool IsRunning;
@@ -29,6 +30,7 @@ public class InputController : MonoBehaviour
         MouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         //return true if pressed
         fire = Input.GetButton("Fire1");
+        placeTNT = Input.GetKey(KeyCode.T);
         Reload = Input.GetKey(KeyCode.R);
         IsRunning = Input.GetKey(KeyCode.LeftShift);
         IsCrouched = Input.GetKey(KeyCode.C);

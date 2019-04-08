@@ -11,6 +11,12 @@ public class PlayerShoot : MonoBehaviour
     public float range = 100f;
     public ParticleSystem muzzelFlash;
     private float fireTime;
+    private SoundTrigger soundTrigger;
+
+    private void Start()
+    {
+        soundTrigger = GameObject.Find("PlayerHandle").transform.Find("SoundTrigger").GetComponent<SoundTrigger>();
+    }
     void Update()
     {
         Shoot();
@@ -21,6 +27,7 @@ public class PlayerShoot : MonoBehaviour
         {
             if(gun.Fire())
             {
+                soundTrigger.AddSound(soundTrigger.GetSoundRadius() * 3.5f + 1);
                 muzzelFlash.Play();
                 fireTime = Time.time;
                 RaycastHit hit;

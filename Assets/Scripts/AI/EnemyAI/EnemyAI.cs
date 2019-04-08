@@ -166,7 +166,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.name == "SoundTrigger")
         {
-            if (enemieHealth.HitPointsRemaining > 10f)
+            if (enemieHealth.HitPointsRemaining > 4f)
             {
                 target = player.transform.position;
                 updateAgentTarget(target);
@@ -202,21 +202,13 @@ public class EnemyAI : MonoBehaviour
     }
 
     [Task]
-    void AttackPlayer()
+    bool AttackPlayer()
     {
         agent.SetDestination(transform.position);
         animator.SetTrigger("Attack");
         zombieAttack.NormalAttack();
-        isAttacking = true;
-        //Still need to fix behavior!
-        //Task.current.Succeed();
-    }
-
-    [Task]
-    void FinishAttacking()
-    {
-        isAttacking = false;
-        Task.current.Succeed();
+        isAttacking = IsInDanger(1);
+        return isAttacking;
     }
 
     [Task]

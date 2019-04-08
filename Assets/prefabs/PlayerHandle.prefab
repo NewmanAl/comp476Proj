@@ -4279,6 +4279,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4034203773913699786}
     m_Modifications:
+    - target: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
+      propertyPath: m_Name
+      value: WFX_MF FPS RIFLE2
+      objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
       propertyPath: lengthInSec
       value: 0.5
@@ -4290,10 +4294,6 @@ PrefabInstance:
     - target: {fileID: 19800000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
       propertyPath: playOnAwake
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
-      propertyPath: m_Name
-      value: WFX_MF FPS RIFLE2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4392,6 +4392,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4034203773632208323}
     m_Modifications:
+    - target: {fileID: 805806819879193982, guid: b06c2ae4a92f56147b2ee449364247dd,
+        type: 3}
+      propertyPath: m_Name
+      value: SoundTrigger
+      objectReference: {fileID: 0}
     - target: {fileID: 805806819879193983, guid: b06c2ae4a92f56147b2ee449364247dd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4446,11 +4451,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 805806819879193982, guid: b06c2ae4a92f56147b2ee449364247dd,
-        type: 3}
-      propertyPath: m_Name
-      value: SoundTrigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b06c2ae4a92f56147b2ee449364247dd, type: 3}

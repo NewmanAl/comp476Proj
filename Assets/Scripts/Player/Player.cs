@@ -54,13 +54,13 @@ public class Player : MonoBehaviour
 
         Move();
         lookAround();
-        //when we have our items to be collected use the code below
-        //if (resource1 && resource2 && resource3)
-        //{
-        //    placeTNT();
-        //}
+       //when we have our items to be collected use the code below
+       if (resource1 && resource2 && resource3)
+       {
+           placeTNT();
+       }
 
-        placeTNT();
+      // placeTNT();
     }
 
     void Move()

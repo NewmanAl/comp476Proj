@@ -17,6 +17,6 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthbar.fillAmount = playerHealth.hitPoints / playerHealth.damageTaken;
+        healthbar.fillAmount = (1 - (playerHealth.damageTaken / playerHealth.hitPoints)); ;
     }
 }

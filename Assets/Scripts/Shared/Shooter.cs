@@ -15,7 +15,7 @@ public class Shooter : MonoBehaviour
     float nextFire; //开火间隔
     public bool fireEnable;
 
-    void Awake()
+    protected virtual void Awake()
     {
         firePot = transform.Find("firePot");
 

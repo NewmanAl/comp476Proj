@@ -13,7 +13,13 @@ public class WeaponReloader : MonoBehaviour
     public int shotFiredInClip;
     bool isReloading;
 
-   
+    private AudioSource[] audios;
+
+
+    private void Awake()
+    {
+        audios = GetComponents<AudioSource>();
+    }
 
     public int RoundRemainingInClip
     {
@@ -37,12 +43,14 @@ public class WeaponReloader : MonoBehaviour
     {
         if (isReloading)
             return;
+        audios[2].Play();
         isReloading = true;
         GameManager.Instance.Timer.Add(ExecuteReload, reloadTime);
     }
 
     private void ExecuteReload()
     {
+        audios[2].Play();
         isReloading = false;
         GetComponentInParent<Player>().inputEnabled = true;
         ammo -= shotFiredInClip;

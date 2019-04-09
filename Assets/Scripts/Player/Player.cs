@@ -50,8 +50,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         Move();
         lookAround();
        //when we have our items to be collected use the code below

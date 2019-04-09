@@ -15,6 +15,7 @@ public class resource : MonoBehaviour
         {
             //resource1 = true;
             player.GetComponent<Player>().resource1 = true;
+            Items_UI.instance.UIAcquireResource(0);
             //print(resource1);
             Destroy(this.gameObject);
         }

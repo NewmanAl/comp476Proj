@@ -27,9 +27,9 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        waypoints = GameObject.FindGameObjectsWithTag("Cover");
         enemieHealth = GetComponent<Health>();
-        InvokeRepeating("RecoverHealth", 5, 2f);
+        InvokeRepeating("RecoverHealth", 5, 5f);
         Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
         zombieMaterials = new Material[renderers.Length];
         for(int i = 0; i < renderers.Length; i++)
@@ -153,7 +153,7 @@ public class EnemyAI : MonoBehaviour
 
         if (Physics.Raycast(transform.position, direction, out RaycastHit hit))
         {
-            isCover |= hit.collider.gameObject.tag == "Cover";
+            isCover |= hit.collider.gameObject.tag == "Obstacle";
         }
 
         if (direction.magnitude < visDistance && visibleAngle < visAngle && !isCover)
@@ -228,7 +228,7 @@ public class EnemyAI : MonoBehaviour
         for (int i = 0; i < waypoints.Length; i++)
         {
             cover = waypoints[i].GetComponent<CoverPointManager>();
-            if (Vector3.Distance(transform.position, waypoints[i].transform.position) < 100f && !cover.SeePlayer())
+            if (Vector3.Distance(transform.position, waypoints[i].transform.position) < 10f && !cover.SeePlayer())
             {
                 coverPoint = waypoints[i];
                 Task.current.Succeed();

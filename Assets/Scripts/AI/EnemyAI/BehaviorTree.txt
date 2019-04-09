@@ -6,7 +6,8 @@ tree("Root")
 tree("Patrol")
     fallback
         tree("TakeCover")
-        while not IsNotHealthy(15.0)
+        tree("Flee")
+        while not IsNotHealthy(6.0)
             fallback
                 tree("CheckAround")
                 tree("Wander")
@@ -48,7 +49,7 @@ tree("ZombieAttack")
             AttackPlayer
         
 tree("Flee")
-    While IsNotHealthy(4.0)
+    While IsNotHealthy(6.0)
            While IsInDanger(15.0)
                 sequence
                     Flee
@@ -56,7 +57,7 @@ tree("Flee")
         
 tree("TakeCover")
     sequence
-        While IsNotHealthy(4.0)
+        While IsNotHealthy(6.0)
             sequence
                 FindTheClosesetCoverPoint
                 TargetCoverPoint

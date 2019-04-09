@@ -27,7 +27,7 @@ public class CoverPointManager : MonoBehaviour
 
         if (Physics.Raycast(transform.position, distance, out RaycastHit hit))
         {
-            isObstacle |= hit.collider.gameObject.tag == "Cover";
+            isObstacle |= hit.collider.gameObject.tag == "Obstacle";
         }
 
         if (!isObstacle)

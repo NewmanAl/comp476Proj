@@ -806,9 +806,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9826924f28c95ef4db1355c8f1e1c2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 20
+  hitPoints: 12
   damageTaken: 0
-  inSeconds: 15
+  inSeconds: 10
 --- !u!114 &1219932021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf706f12542f274aa180d753c8acb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4034203773632208323, guid: 7d7444b9dd515924a9ec496a4523f6b7, type: 3}
+  player: {fileID: 0}
   coverPoint: {fileID: 0}
   waypoints: []
   target: {x: 0, y: 0, z: 0}

@@ -6,7 +6,6 @@ tree("Root")
 tree("Patrol")
     fallback
         tree("TakeCover")
-        tree("Flee")
         while not IsNotHealthy(6.0)
             fallback
                 tree("CheckAround")
@@ -19,7 +18,7 @@ tree("AIDead")
         AIDead
         
 tree("CheckAround")
-    while not IsNotHealthy(15.0)
+    while not IsNotHealthy(6.0)
         while not SeePlayer
             sequence
                 random
@@ -50,7 +49,7 @@ tree("ZombieAttack")
         
 tree("Flee")
     While IsNotHealthy(6.0)
-           While IsInDanger(15.0)
+           While IsInDanger(20.0)
                 sequence
                     Flee
                     GoToDestination

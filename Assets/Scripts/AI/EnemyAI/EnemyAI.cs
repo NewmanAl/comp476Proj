@@ -191,7 +191,7 @@ public class EnemyAI : MonoBehaviour
     [Task]
     void RecoverHealth()
     {
-        if (enemieHealth.HitPointsRemaining < 20 && enemieHealth.HitPointsRemaining > 0)
+        if (enemieHealth.HitPointsRemaining < 9 && enemieHealth.HitPointsRemaining > 0)
             enemieHealth.damageTaken--;
     }
 

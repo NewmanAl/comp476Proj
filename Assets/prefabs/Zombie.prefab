@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9826924f28c95ef4db1355c8f1e1c2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 12
+  hitPoints: 9
   damageTaken: 0
   inSeconds: 10
 --- !u!114 &1219932021

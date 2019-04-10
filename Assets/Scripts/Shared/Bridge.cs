@@ -5,7 +5,18 @@ using UnityEngine.SceneManagement;
 public class Bridge : MonoBehaviour
 {
     int counter = 0;
+
     public Transform parentTransform;
+
+
+    private AudioSource[] audios;
+
+
+    private void Awake()
+    {
+        audios = GetComponents<AudioSource>();
+    }
+
     void Start()
     {
         parentTransform = this.transform;
@@ -26,6 +37,7 @@ public class Bridge : MonoBehaviour
 
     void isDestoried()
     {
+        audios[0].Play();
         for (int j = 0; j < parentTransform.childCount; j++)
         {
             parentTransform.GetChild(j).gameObject.SetActive(false);

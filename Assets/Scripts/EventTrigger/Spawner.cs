@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject zombiePrefab;
-    private int numberOfZombies = 5;
+    [SerializeField]int numberOfZombies = 5;
     private int spawnRadius = 10;
     private Vector3 spawnPosition;
 

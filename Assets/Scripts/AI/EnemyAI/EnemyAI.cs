@@ -72,11 +72,12 @@ public class EnemyAI : MonoBehaviour
     [Task]
     void RandomDestination()
     {
-        Vector3 destination = new Vector3(Random.Range(0.0f, 80f), 0, Random.Range(-30f, 40f));
         agent.speed = 1.5f;
-        agent.SetDestination(destination);
         animator.SetTrigger("Walk");
         animator.SetFloat("Speed", agent.speed);
+        Vector3 destination = new Vector3(Random.Range(0.0f, 80f), 0, Random.Range(-30f, 40f));
+        agent.SetDestination(destination);
+
         Task.current.Succeed();
     }
 
@@ -85,7 +86,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
-            animator.SetTrigger("Idle");
             Task.current.Succeed();
         }
     }
@@ -95,6 +95,7 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 lookDirection = transform.position + Quaternion.AngleAxis(angle, Vector3.up) * transform.forward;
         target = lookDirection;
+
         return true;
     }
 
@@ -166,7 +167,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.name == "SoundTrigger")
         {
-            if (enemieHealth.HitPointsRemaining > 4f)
+            if (enemieHealth.HitPointsRemaining > 7f)
             {
                 target = player.transform.position;
                 updateAgentTarget(target);
@@ -215,7 +216,7 @@ public class EnemyAI : MonoBehaviour
     void Flee()
     {
         Vector3 awayFromPlayer = transform.position - player.transform.position;
-        Vector3 destination = transform.position + awayFromPlayer / 5;
+        Vector3 destination = transform.position + awayFromPlayer * 2;
         updateAgentTarget(destination, 2.0f);
         Task.current.Succeed();
     }
@@ -228,7 +229,7 @@ public class EnemyAI : MonoBehaviour
         for (int i = 0; i < waypoints.Length; i++)
         {
             cover = waypoints[i].GetComponent<CoverPointManager>();
-            if (Vector3.Distance(transform.position, waypoints[i].transform.position) < 10f && !cover.SeePlayer())
+            if (Vector3.Distance(transform.position, waypoints[i].transform.position) < 12f && !cover.SeePlayer())
             {
                 coverPoint = waypoints[i];
                 Task.current.Succeed();

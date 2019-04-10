@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(MoveController))]
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     [System.Serializable]
     public class MouseInput //soomth dumping
     {
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        instance = this;
         playerInput = GameManager.Instance.InputController;
         MoveController = GetComponent<MoveController>();
         crossHair = GetComponentInChildren<aimPoint>();

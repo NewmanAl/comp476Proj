@@ -10,7 +10,7 @@ public class DayAndNight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rotationScale = 8;
+        rotationScale = 4;
     }
 
     // Update is called once per frame
